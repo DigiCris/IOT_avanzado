@@ -1,0 +1,38 @@
+1) Instalar driver 
+
+CH340 para esp8266:
+    a) https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#windows-710
+    b) https://sparks.gogo.co.nz/ch340.html (el que yo instalé)
+
+CP210X para esp32:
+    a) adjunto en este github (me lo pasó un alumno de otra comisión, yo no lo probé)
+
+2) Descargar Arduino de arduino.cc yendo a software y luego download y seguir los pasos del ejecutable.
+
+3) File - Preference - Additional boards mannager => ponerle: https://arduino.esp8266.com/stable/package_esp8266com_index.json
+Para ESP32 podemos buscarlo el json como "ESP32 arduino core github"
+aunque creo que ya viene instalado por defecto actualmente. (el del nodeMCU quizá también)
+
+4) Tools - Board - Board Manager => le damos a install
+
+5) Tools - Board - 
+caso ESP8266:
+    ESP8266 -> Escogemos nodeMCU 1.0 (ESP12E Module)
+caso ESP32:
+    Deberíamos escoger el node32s
+
+6) Conectamos el modulo que deberá escucharse la conexión (sino puede que estemos usando un cable de alimentacion
+y no de datos... debemos usar uno de datos, sino no va a funcionar.)
+
+7) Tools - Port - COM3 (A ustedes puede aparecerles otro COM)
+
+Para probar funcionamiento podemos usar led blinking
+
+8) File - Example - Basics - Blink 
+(nos aseguramos que la placa y el port esté elegido como hicimos en 5 y 7 )
+Le damos a "Upload" (->)    (la flechita del ide que compila y sube a la flash del microcontrolador)
+
+Nota: Para ESP32 si tira "Fatal error code: 2" Fijarse presionando el boton de la derecha visto de frente
+    que habilitará el guardado del programa en la flash.
+
+9) probar todos los programas de esta clase y luego intentar de realizar el integrador. Y el semaforo que se mencionó.
