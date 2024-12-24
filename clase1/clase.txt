@@ -1,0 +1,5 @@
+Se vio toda la teoría del modulo 1.
+
+Teoría de redes, modelo OSI, IP publica, privada, Mac, Protocolo ARP, Cliente, Servidor, get / post, etc.
+
+(flato SSL y criptografía que lo dejamos para más adelante si amerita)
