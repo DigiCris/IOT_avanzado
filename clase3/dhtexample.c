@@ -1,4 +1,4 @@
-/*
+
 // Example testing sketch for various DHT humidity/temperature sensors
 // Written by ladyada, public domain
 
