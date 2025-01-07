@@ -1,13 +1,13 @@
 
 /* Fill-in information from Blynk Device Info here */
-#define BLYNK_TEMPLATE_ID           "TMPL2sRn4EP23"
+#define BLYNK_TEMPLATE_ID           "TMPL24ZN6Djje"
 #define BLYNK_TEMPLATE_NAME         "Clase4"
-#define BLYNK_AUTH_TOKEN            "P2FcOpntRfVVCOaFC31QJgBu1vI9lcu8"
-#define DHTTYPE DHT11   // DHT 11
-#define DHTPIN D2     // Digital pin connected to the DHT sensor
+#define BLYNK_AUTH_TOKEN            "-qohFCOIfC6XZAp2afIO0WLpLQVzssjf"
 
 /* Comment this out to disable prints and save space */
 #define BLYNK_PRINT Serial
+#define DHTPIN D2     // Digital pin connected to the DHT sensor
+#define DHTTYPE DHT11   // DHT 11
 
 
 #include <ESP8266WiFi.h>
@@ -35,12 +35,11 @@ void myTimerEvent()
   int h = dht.readHumidity();
   int t = dht.readTemperature();
 
-  // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(t)) {
     Serial.println(F("Failed to read from DHT sensor!"));
-  } else {
-    Blynk.virtualWrite(V6, t);
-    Blynk.virtualWrite(V0, h);
+  }else {
+    Blynk.virtualWrite(V0, t);
+    Blynk.virtualWrite(V1, h);
 
     Serial.print(F("Humidity: "));
     Serial.print(h);
@@ -48,23 +47,32 @@ void myTimerEvent()
     Serial.print(t);
     Serial.println(F("°C "));
   }
+
+  Serial.println(analogRead(A0));
+
+  Blynk.virtualWrite(V3, analogRead(A0));
+
 }
 
-BLYNK_WRITE(V1)
+
+BLYNK_WRITE(V2)
 {
   int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
-  // You can also use:
-  // String i = param.asStr();
-  // double d = param.asDouble();
-  Serial.print("V1 is: ");
+  Serial.print("V2 is: ");
   Serial.println(pinValue);
-  digitalWrite(D4,!pinValue);
+
+  digitalWrite(D4, pinValue);
 }
+
 
 void setup()
 {
   // Debug console
   Serial.begin(9600);
+
+  dht.begin();
+
+  pinMode(D4, OUTPUT);
 
   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
   // You can also specify server:
@@ -73,8 +81,6 @@ void setup()
 
   // Setup a function to be called every second
   timer.setInterval(2000L, myTimerEvent);
-  dht.begin();
-  pinMode(D4, OUTPUT);
 }
 
 void loop()
