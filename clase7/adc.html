@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset cada 5 segundos</title>
+    <meta http-equiv="refresh" content="5">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .progress-container {
+            width: 500px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+            height: 30px;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #76c7c0;
+            transition: width 0.5s;
+        }
+        .number {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="number" id="number">1024</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        const hardcodedValue = 800; // Valor hardcodeado
+        const progressBar = document.getElementById("progress-bar");
+        const numberDisplay = document.getElementById("number");
+
+        function updateProgress() {
+            numberDisplay.textContent = hardcodedValue;
+            const percentage = (hardcodedValue / 1024) * 100; // Calcular el porcentaje
+            progressBar.style.width = percentage + '%'; // Actualizar la barra de progreso
+        }
+
+        updateProgress();
+    </script>
+
+</body>
+</html>
