@@ -1,0 +1,10 @@
+Instalo mosquito en ubuntu
+sudo apt-get install mosquitto mosquitto-clients
+
+Me suscribo para leer
+mosquitto_sub -h localhost -t "manipularLed" -v
+
+Publico
+mosquitto_pub -h localhost -t "manipularLed" -m "mensaje a mandar"
+
+test.mosquitto.org => alternativa de broken ya corriendo pero acepta pocas llamadas
